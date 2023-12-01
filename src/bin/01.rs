@@ -79,7 +79,14 @@ treb7uchet";
 
     #[test]
     fn test_part_two() {
-        let result = part_two(&advent_of_code::template::read_file("examples", DAY));
-        assert_eq!(result, Some(360));
+        let input = "two1nine
+eightwothree
+abcone2threexyz
+xtwone3four
+4nineeightseven2
+zoneight234
+7pqrstsixteen";
+        let result = part_two(input);
+        assert_eq!(result, Some(281));
     }
 }
