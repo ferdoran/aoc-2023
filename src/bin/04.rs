@@ -44,8 +44,8 @@ pub fn part_one(input: &str) -> Option<u32> {
 pub fn part_two(input: &str) -> Option<u32> {
     let r = Regex::new(r"^Card\s+\d+:\s(?P<numbers>.*)$").unwrap();
     let match_count = input.lines().map(|line| {
-        count_matching_numbers(&r, line) as u64
-    }).collect::<Vec<u64>>();
+        count_matching_numbers(&r, line) as u32
+    }).collect::<Vec<u32>>();
 
     let mut num_of_cards = HashMap::with_capacity(match_count.len());
     for i in 0..match_count.len() {
