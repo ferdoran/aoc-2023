@@ -173,19 +173,19 @@ pub fn part_two(input: &str) -> Option<u64> {
     return if seeds.iter().any(|r| r.contains(&min_loc)) {
         Some(min_loc)
     } else {
-        println!("min loc {} not in seeds", min_loc);
+        // println!("min loc {} not in seeds", min_loc);
         let mut min_loc = min_loc;
         let mut range_step = min_loc / 1024;
         let mut min = min_loc;
 
         let mut min_start = 0;
         while range_step != 0 {
-            println!("range_step: {}", range_step);
+            // println!("range_step: {}", range_step);
             for l in (min_start..min_loc).step_by(range_step as usize) {
                 let s = maps.rev_map(l);
                 if seeds.iter().any(|r| r.contains(&s)) {
                     if l <= min {
-                        println!("found new min_loc: {l}");
+                        // println!("found new min_loc: {l}");
                         min = l;
                         min_loc = l;
                         min_start = l - 2 * range_step;
