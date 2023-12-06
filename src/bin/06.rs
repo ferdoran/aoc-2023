@@ -15,16 +15,7 @@ pub fn part_one(input: &str) -> Option<u64> {
 
     let result = times.iter().enumerate().map(|(i, time)| {
         let record = distances[i];
-
-        let numbers_of_ways = (0..*time).filter_map(|t| {
-            let d = (*time - t) * t;
-            if d > record {
-                Some(d)
-            } else {
-                None
-            }
-        })
-            .collect::<Vec<u64>>();
+        let numbers_of_ways = calculate_number_of_ways(*time, record);
         numbers_of_ways.len()
     })
             .fold(1, |acc, x| acc * x);
@@ -48,6 +39,13 @@ pub fn part_two(input: &str) -> Option<u64> {
 
     let record = distances;
 
+    let numbers_of_ways = calculate_number_of_ways(times, record);
+    let result = numbers_of_ways.len();
+
+    Some(result as u64)
+}
+
+fn calculate_number_of_ways(times: u64, record: u64) -> Vec<u64> {
     let numbers_of_ways = (0..times).filter_map(|t| {
         let d = (times - t) * t;
         if d > record {
@@ -57,10 +55,7 @@ pub fn part_two(input: &str) -> Option<u64> {
         }
     })
         .collect::<Vec<u64>>();
-    let result = numbers_of_ways.len();
-
-
-    Some(result as u64)
+    numbers_of_ways
 }
 
 #[cfg(test)]
